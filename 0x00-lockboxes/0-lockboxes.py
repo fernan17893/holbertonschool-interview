@@ -1,6 +1,15 @@
 #!/usr/bin/python3
 
+"""
+Problem: 
+Task: Write a method that determines if all boxes can be openeed
+"""
+
+
 def canUnlockAll(boxes):
+    """
+    Function that checks value if the list type and lenght
+    """
 
     if type(boxes) is not list:
         return False
