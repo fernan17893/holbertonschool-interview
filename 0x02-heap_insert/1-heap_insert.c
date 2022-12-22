@@ -12,6 +12,7 @@ heap_t *find_parent_node(heap_t **root, int value)
 	binary_tree_t *temp = *root;
 	binary_tree_t *left = NULL;
 	binary_tree_t *right = NULL;
+
 	if (*root == NULL)
 		return (NULL);
 
