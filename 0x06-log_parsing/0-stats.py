@@ -1,47 +1,40 @@
 #!/usr/bin/python3
-""" script that reads stdin line by line and computes metrics """
+""" doc """
+import sys
 
-if __name__ == '__main__':
 
-    import sys
-
-    def print_results(statusCodes, fileSize):
-        """ Print statistics """
-        print("File size: {:d}".format(fileSize))
-        for statusCode, times in sorted(statusCodes.items()):
-            if times:
-                print("{:s}: {:d}".format(statusCode, times))
-
-    statusCodes = {"200": 0,
-                   "301": 0,
-                   "400": 0,
-                   "401": 0,
-                   "403": 0,
-                   "404": 0,
-                   "405": 0,
-                   "500": 0
-                   }
+if __name__ == "__main__":
+    i = 0
+    status = {
+        '200': 0,
+        '301': 0,
+        '400': 0,
+        '401': 0,
+        '403': 0,
+        '404': 0,
+        '405': 0,
+        '500': 0
+    }
     fileSize = 0
-    n_lines = 0
+
+    def printstats(fileSize, status):
+        """ doc """
+        print("File size: {:d}".format(fileSize))
+        for key in sorted(status.keys()):
+            if status[key] != 0:
+                print("{}: {:d}".format(key, status[key]))
 
     try:
-        """ Read stdin line by line """
         for line in sys.stdin:
-            if n_lines != 0 and n_lines % 10 == 0:
-                """ After every 10 lines, print from the beginning """
-                print_results(statusCodes, fileSize)
-            n_lines += 1
-            data = line.split()
-            try:
-                """ Compute metrics """
-                statusCode = data[-2]
-                if statusCode in statusCodes:
-                    statusCodes[statusCode] += 1
-                fileSize += int(data[-1])
-            except:
-                pass
-        print_results(statusCodes, fileSize)
+            words = line.split()
+            if len(words) >= 2:
+                if words[-2] in status.keys():
+                    status[words[-2]] += 1
+                fileSize += int(words[-1])
+                i += 1
+                if not i % 10:
+                    printstats(fileSize, status)
+        printstats(fileSize, status)
     except KeyboardInterrupt:
-        """ Keyboard interruption, print from the beginning """
-        print_results(statusCodes, fileSize)
+        printstats(fileSize, status)
         raise
