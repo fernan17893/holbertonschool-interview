@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 
 """
-Problem: 
+Problem:
 Task: Write a method that determines if all boxes can be openeed
 """
 
