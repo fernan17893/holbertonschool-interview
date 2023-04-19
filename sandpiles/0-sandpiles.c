@@ -4,7 +4,7 @@
 #include "sandpiles.h"
 
 /**
- * sandpiles_sum - prints the sum of two sandpiles
+ * add_sandpiles - prints the sum of two sandpiles
  * @grid1: Left 3x3 grid
  * @grid2: Right 3x3 grid
  *
@@ -24,6 +24,13 @@ void add_sandpiles(int grid1[3][3], int grid2[3][3])
 	}
 }
 
+/**
+ * print_sandpile - prints the sum of two sandpiles
+ * @grid: Left 3x3 grid
+ *
+ *
+ */
+
 void print_sandpile(int grid[3][3])
 {
 	int i, j = 0;
@@ -40,6 +47,14 @@ void print_sandpile(int grid[3][3])
 		printf("\n");
 	}
 }
+
+/**
+ * check_sandpiles - prints the sum of two sandpiles
+ * @grid: Left 3x3 grid
+ * Return: 1 if true, 0 if false
+ *
+ *
+ */
 
 int check_sandpiles(int grid[3][3])
 {
@@ -66,6 +81,13 @@ int check_sandpiles(int grid[3][3])
 		return (0);
 	}
 }
+
+/**
+ * topple_sandpiles - prints the sum of two sandpiles
+ * @grid: Left 3x3 grid
+ *
+ *
+ */
 
 void topple_sandpiles(int grid[3][3])
 {
@@ -107,6 +129,13 @@ void topple_sandpiles(int grid[3][3])
 		}
 	}
 }
+
+/**
+ * sandpiles_sum - prints the sum of two sandpiles
+ * @grid1: Left 3x3 grid
+ * @grid2: Right 3x3 grid
+ *
+ */
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
