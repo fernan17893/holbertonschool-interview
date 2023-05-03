@@ -1,41 +1,52 @@
 #!/usr/bin/python3
-""" doc """
+
+'''
+Reads stdin line by line and computes metrics
+'''
 import sys
 
-
 if __name__ == "__main__":
-    i = 1
-    status = {
-        '200': 0,
-        '301': 0,
-        '400': 0,
-        '401': 0,
-        '403': 0,
-        '404': 0,
-        '405': 0,
-        '500': 0
-    }
-    fileSize = 0
 
-    def printstats(fileSize, status):
-        """ doc """
-        print("File size: {:d}".format(fileSize))
-        for key in sorted(status.keys()):
-            if status[key] != 0:
-                print("{}: {:d}".format(key, status[key]))
+    status_codes = {200: 0, 301: 0, 400: 0, 401: 0,
+                    403: 0, 404: 0, 405: 0, 500: 0}
+    file_size = [0]
+    count = 1
+
+    def print_stats():
+        '''
+        Prints file size and stats for every 10 loops
+        '''
+        print('File size: {}'.format(file_size[0]))
+
+        for code in sorted(status_codes.keys()):
+            if status_codes[code] != 0:
+                print('{}: {}'.format(code, status_codes[code]))
+
+    def parse_stdin(line):
+        '''
+        Checks the stdin for matches
+        '''
+        try:
+            line = line[:-1]
+            word = line.split(' ')
+            # File size is last parameter on stdout
+            file_size[0] += int(word[-1])
+            # Status code comes before file size
+            status_code = int(word[-2])
+            # Move through dictionary of status codes
+            if status_code in status_codes:
+                status_codes[status_code] += 1
+        except BaseException:
+            pass
 
     try:
         for line in sys.stdin:
-            line = line[:-1]
-            words = line.split()
-            if len(words) >= 2:
-                if words[-2] in status.keys():
-                    status[words[-2]] += 1
-                fileSize += int(words[-1])
-                i += 1
-                if i % 10 == 0:
-                    printstats(fileSize, status)
-        printstats(fileSize, status)
+            parse_stdin(line)
+            # print the stats after every 10 outputs
+            if count % 10 == 0:
+                print_stats()
+            count += 1
     except KeyboardInterrupt:
-        printstats(fileSize, status)
+        print_stats()
         raise
+    print_stats()
