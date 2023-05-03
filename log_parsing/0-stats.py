@@ -26,6 +26,7 @@ if __name__ == "__main__":
 
     try:
         for line in sys.stdin:
+            line = line[:-1]
             words = line.split()
             if len(words) >= 2:
                 if words[-2] in status.keys():
