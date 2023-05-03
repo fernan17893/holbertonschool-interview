@@ -4,7 +4,7 @@ import sys
 
 
 if __name__ == "__main__":
-    i = 0
+    i = 1
     status = {
         '200': 0,
         '301': 0,
