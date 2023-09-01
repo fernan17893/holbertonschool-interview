@@ -13,7 +13,6 @@ def rotate_2d_matrix(matrix):
 
     N = len(matrix)
 
-
     matrix_copy = []
     copy_row = 0
     for column in range(N):
@@ -22,7 +21,6 @@ def rotate_2d_matrix(matrix):
                 matrix_copy.append([])
             matrix_copy[copy_row].append(matrix[row][column])
         copy_row += 1
-
 
     for row in range(N):
         for column in range(N):
