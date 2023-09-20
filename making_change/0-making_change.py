@@ -3,6 +3,7 @@
 determines fewest number of coins needed to meet a given amount total
 """
 
+
 def makeChange(coins, total):
     """
     makeChange
@@ -13,7 +14,6 @@ def makeChange(coins, total):
     table = [float('inf')] * (total + 1)
     table[0] = 0
 
-   
     for coin in coins:
         for i in range(coin, total + 1):
             table[i] = min(table[i], table[i - coin] + 1)
