@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ Prime Game """
 
+
 def isWinner(x, nums):
     """ Prime Game"""
     maria_wins = 0
@@ -14,9 +15,9 @@ def isWinner(x, nums):
         if isPrime(num):
             can_move = True
             nums.remove(num)
-            for multiple in range(num * 2, n + 1, num):
-                    nums.remove(multiple)
-            break
+        for multiple in range(num * 2, n + 1, num):
+            nums.remove(multiple)
+        break
 
     if can_move:
         maria_wins += 1
@@ -29,14 +30,15 @@ def isWinner(x, nums):
         return "Ben"
     else:
         return None
-    
+
+
 def isPrime(n):
     """ Prime Game """
     if n <= 1:
         return False
-    
+
     for i in range(2, int(num ** 0.5) + 1):
         if n % i == 0:
             return False
-        
+
     return True
